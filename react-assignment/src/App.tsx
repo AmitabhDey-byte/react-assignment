@@ -1,19 +1,16 @@
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import { useEffect, useState } from "react";
-
 const Artworks = () => {
-  const [data, setData] = useState([]);
+  const [Data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchdata = async () => {
+useEffect(() => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-
-        const res = await fetch(
-          `https://api.artic.edu/api/v1/artworks?page=${page}`
-        );
-
+const res = await fetch(
+          `https://api.artic.edu/api/v1/artworks?page=${page}`);
         const data = await res.json();
         setData(data.data); 
       } catch (err) {
@@ -22,24 +19,21 @@ const Artworks = () => {
         setLoading(false);
       }
     };
-
-    fetchsdata();
+ fetchData();
   }, [page]);
 
   return (
     <div>
-      {loading && <p>Loading...</p>}
-
-      {data.map((item: any) => (
-        <div key={item.id}>
-          <h3>{item.title}</h3>
-          <p>{item.artist_display}</p>
-        </div>
-      ))}
-
-      <button onClick={() => setPage((p) => p + 1)}>Next Page</button>
+<DataTable value={Data} tableStyle={{ minWidth: '50rem' }}>
+  <Column field="title" header="Title" />
+        <Column field="artist_display" header="Artist" />
+        <Column field="place_of_origin" header="Origin" />
+        <Column field="date_start" header="Start Year" />
+        <Column field="date_end" header="End Year" />
+        <Column field="inscriptions" header="Inscriptions" />
+</DataTable>
+ <button onClick={() => setPage((p) => p + 1)}>Next Page</button>
     </div>
   );
 };
-
 export default Artworks;
