@@ -30,8 +30,8 @@ It displays artwork data from the Art Institute of Chicago API with proper serve
 
 Clone the repository:
 
-git clone <your-repo-link>  
-cd <your-project-folder>
+git clone https://github.com/AmitabhDey-byte/react-assignment  
+cd <react-assignment>
 
 Install dependencies:
 
