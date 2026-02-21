@@ -44,8 +44,6 @@ const ArtworksDataTable = () => {
   useEffect(() => {
     loadData();
   }, [page, rows]);
-
-  // --- Handlers ---
   const onPageChange = (event: any) => {
     setFirst(event.first);
     setRows(event.rows);
@@ -72,21 +70,9 @@ const ArtworksDataTable = () => {
     }
   };
   const header = (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-      <Button type="button" icon="pi pi-filter"
-        label="Custom Select"  onClick={(e) => op.current?.toggle(e)} />
-      <OverlayPanel ref={op}>
-        <div >
-          <label style={{ fontSize: '12px', fontWeight: 'bold' }}>Select Rows</label>
-          <InputText value={bulkSelectCount} onChange={(e) => setBulkSelectCount(e.target.value)}
-            placeholder="Quantity..." keyfilter="int"/>
-          <Button label="Apply" onClick={handleBulkSelect} />
-        </div>
-      </OverlayPanel>
       <span>
         {selectedArtworks.length} rows selected
       </span>
-    </div>
   );
   return (
     <div style={{ margin: '20px' }}>
